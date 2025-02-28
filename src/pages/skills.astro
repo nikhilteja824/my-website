@@ -1,0 +1,92 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { skillCategories, skills } from "../lib/skills.ts";
+---
+
+<BaseLayout title="Skills" sideBarActiveItemID="skills">
+
+<!-- Centered Resume Title -->
+  <div class="text-left">
+    <h2 class="text-3xl font-bold mb-2">SKILLS</h2>
+  </div>
+
+    <div class="mb-5 text-justify">
+      Here is an overview of my skills across different domains.    
+    </div>
+
+  <div class="flex flex-wrap justify-center gap-4 mb-6" id="skill-filters">
+    {skillCategories.map((category) => (
+      <button
+        class="px-4 py-2 rounded-md text-sm font-medium border border-gray-400 text-gray-600"
+        data-category={category}
+      >
+        {category}
+      </button>
+    ))}
+  </div>
+
+  <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {skills.map((skill) => (
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md skill-item" data-category={skill.category}>
+        <div class="flex items-center gap-3">
+          <img src={`https://api.iconify.design/${skill.icon}.svg`} alt={skill.name} class="w-6 h-6" />
+          <h3 class="text-lg font-bold">{skill.name}</h3>
+        </div>
+        <div class="relative w-full bg-gray-300 h-3 mt-2 rounded-full">
+          <div
+            class="absolute top-0 left-0 h-full bg-blue-500 rounded-full"
+            style={`width: ${(skill.level / 5) * 100}%`}
+          ></div>
+        </div>
+        <p class="text-sm text-gray-600 mt-1">{skill.level} / 5</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+
+<script client:load>
+  function setupSkillFilters() {
+    const buttons = document.querySelectorAll("#skill-filters button");
+    const skills = document.querySelectorAll(".skill-item");
+
+    // Restore last selected category from session storage (if exists)
+    let selectedCategory = sessionStorage.getItem("selectedSkillCategory") || "All";
+
+    function filterSkills(category) {
+      sessionStorage.setItem("selectedSkillCategory", category);
+
+      buttons.forEach((btn) => btn.classList.remove("border-blue-600", "text-blue-600"));
+      buttons.forEach((btn) => {
+        if (btn.getAttribute("data-category") === category) {
+          btn.classList.add("border-blue-600", "text-blue-600");
+        }
+      });
+
+      skills.forEach((skill) => {
+        const skillElement = skill;
+        if (category === "All" || skill.getAttribute("data-category") === category) {
+          skillElement.style.display = "block";
+        } else {
+          skillElement.style.display = "none";
+        }
+      });
+    }
+
+    // Apply filter on page load (preserve state)
+    filterSkills(selectedCategory);
+
+    // Add click event listeners to buttons
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        filterSkills(button.getAttribute("data-category"));
+      });
+    });
+  }
+
+  // Run filter setup on page load & after navigation
+  document.addEventListener("astro:after-swap", setupSkillFilters);
+  setupSkillFilters();
+</script>
+
+</BaseLayout>

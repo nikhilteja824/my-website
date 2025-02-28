@@ -1,78 +1,92 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
-import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug"
-
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const last_posts = posts.slice(0, 3);
+import { testimonials } from "../lib/testimonials.ts";
 ---
 
 <BaseLayout sideBarActiveItemID="home">
+
+  <div class="text-left">
+    <h2 class="text-3xl font-bold mb-2">ABOUT ME</h2>
+  </div>
+  <!-- Hero Section -->
   <div class="pb-12 mt-5">
     <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
-    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
-    <div class="py-2">
-      <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
-      </text>
-    </div>
-    <div class="mt-8">
-      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
-      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
-        Get This template
+    <div class="text-5xl font-bold">I'm Nikhil</div>
+    <div class="text-2xl py-3 text-gray-700">Software Engineer & Tech Enthusiast</div>
+    
+    <!-- About Me Section -->
+    <!-- <h2 class="text-xl mb-4">About Me</h2> -->
+    <p class="text-lg text-gray-600 leading-relaxed">
+      I’m a dedicated software engineer who is passionate about developing innovative solutions. My resume reflects hands-on
+      experience in building scalable, efficient systems, and I’m eager to tackle new challenges in technology. I thrive on
+      continuous learning and enjoy working on projects that push the boundaries of what’s possible. Whether it’s designing
+      robust backend architectures or crafting elegant user interfaces, I’m committed to delivering high-quality software that
+      makes a real impact.
+    </p>
+
+    <!-- Buttons -->
+    <div class="mt-6 flex gap-4">
+      <a class="px-4 py-2 text-white bg-gray-800 hover:bg-gray-900 rounded-md shadow-md transition" href="/contact">
+        Let's connect!
+      </a>
+      <a href="/resume.pdf" download="Nikhil_Teja_Resume.pdf" class="px-4 py-2 text-white bg-gray-700 hover:bg-gray-800 rounded-md shadow-md">
+        📄 Download My Resume
       </a>
     </div>
   </div>
 
-  <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+  <!-- Testimonials / Recommendations -->
+  <div class="mt-16">
+    <h2 class="text-xl mb-4">Perspectives on My Work & Impact</h2>
+    <p class="text-lg text-gray-600 mb-6">Some reflections from those I’ve worked with.</p>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {testimonials.map((testimonial) => (
+        <div class="p-5 border border-gray-300 rounded-lg shadow-md bg-white">
+          <p class="text-gray-700 italic">"{testimonial.text}"</p>
+          <div class="mt-4 text-gray-900">{testimonial.name} • {testimonial.position}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-6">
+      <a href="https://www.linkedin.com/in/nikhiltejamalyala/details/recommendations/" 
+         target="_blank" 
+         class="text-blue-600 hover:text-blue-800 text-lg">
+        View More on LinkedIn →
+      </a>
+    </div>
   </div>
 
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+  <!-- My Background Section -->
+  <div class="mt-16">
+    <h2 class="text-xl mb-4">My Background</h2>
+    <ul class="list-disc pl-5 text-lg text-gray-600">
+      <li>Grew up in India, developing a deep interest in mathematics and engineering.</li>
+      <li>Completed undergraduate studies at IIT Roorkee in Electrical Engineering.</li>
+      <li>Developed hands-on software skills through projects in distributed systems and backend development.</li>
+      <li>Worked at Myntra as a Software Development Engineer, leading impactful backend projects.</li>
+      <li>Currently pursuing a Master’s at Stony Brook University, specializing in systems and cloud infrastructure.</li>
+    </ul>
   </div>
 
-  {
-    last_posts.map((post) => (
-      <>
-        <HorizontalCard
-          title={post.data.title}
-          img={post.data.heroImage}
-          desc={post.data.description}
-          url={"/blog/" + createSlug(post.data.title, post.slug)}
-          target="_self"
-          badge={post.data.badge}
-        />
-        <div class="divider my-0" />
-      </>
-    ))
-  }
+  <!-- Beyond the Code -->
+  <div class="mt-16">
+    <h2 class="text-xl mb-4">Beyond the Code</h2>
+    <ul class="list-disc pl-5 text-lg text-gray-600">
+      <li>Passionate about deep learning in distributed systems.</li>
+      <li>Enjoy mentoring and knowledge sharing within tech communities.</li>
+      <li>Follow the latest advancements in cloud computing and backend technologies.</li>
+    </ul>
+  </div>
+
+  <!-- Fun Facts -->
+  <div class="mt-16">
+    <h2 class="text-xl mb-4">Fun Facts</h2>
+    <ul class="list-disc pl-5 text-lg text-gray-600">
+      <li>Have a love-hate relationship with coffee—powering my work while disrupting my sleep.</li>
+      <li>Enjoy debugging more than coding—it’s like solving a great puzzle.</li>
+      <li>Use ChatGPT to pick the perfect pineapple at the store (yes, really!).</li>
+    </ul>
+  </div>
 </BaseLayout>

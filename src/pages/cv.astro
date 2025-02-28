@@ -1,92 +1,77 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
+import { education } from "../lib/education.ts";
+import { experience } from "../lib/experience.ts";
+import { certifications } from "../lib/certifications.ts";
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
+
+<!-- Centered Resume Title -->
+  <div class="text-left">
+    <h2 class="text-3xl font-bold mb-2">RESUME</h2>
   </div>
 
+  <!-- Right-Aligned Smaller Download Button -->
+  <div class="flex justify-end mb-6">
+    <a href="/resume.pdf" download="Nikhil_Teja_Resume.pdf"
+        class="px-3 py-1.5 text-sm text-white bg-gray-700 hover:bg-gray-800 rounded-md shadow-md flex items-center gap-2">
+        📄 Download My Resume
+    </a>
+  </div>
+  <!-- Profile Section -->
+  <div class="mb-5">
+    <div class="text-xl w-full font-bold">Profile</div>
+  </div>
   <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    A software engineer with a passion for scalable backend systems and distributed computing. 
+    Experienced in Java, Spring Boot, and cloud-based architectures. Currently pursuing a Master's at Stony Brook University.
   </div>
 
+  <!-- Education Section -->
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
+    <div class="text-xl w-full font-bold">Education</div>
   </div>
-
   <div class="time-line-container grid gap-4 mb-10">
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
+    {education.map((edu) => (
+      <TimeLineElement title={edu.title} subtitle={edu.subtitle} />
+    ))}
   </div>
 
+  <!-- Experience Section -->
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
+    <div class="text-xl w-full font-bold">Experience</div>
   </div>
-
   <div class="time-line-container mb-10">
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
-    <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
-    >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
-    </TimeLineElement>
+    {experience.map((exp) => (
+      <TimeLineElement title={exp.title} subtitle={exp.subtitle}>
+        <ul class="list-disc ml-6">
+          {exp.description.split("\n").map((point) => (
+            <li>{point.trim()}</li>
+          ))}
+        </ul>
+      </TimeLineElement>
+    ))}
   </div>
 
+  <!-- Certifications Section -->
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
+    <div class="text-xl w-full font-bold">Certifications</div>
   </div>
-
   <ul class="list-disc mx-6 mb-10 grid gap-2">
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
-    <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
-    </li>
+    {certifications.map((cert) => (
+      <li>
+        <a href={cert.link} target="_blank">{cert.name}</a>
+      </li>
+    ))}
   </ul>
 
+  <!-- Skills Section -->
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
+    <div class="text-xl w-full font-bold">Skills</div>
+    <a href="/skills" class="text-blue-600 hover:text-blue-800 text-lg">
+      View My Full Skillset →
+    </a>
   </div>
-
-  <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-  </ul>
 </BaseLayout>
