@@ -4,9 +4,9 @@
   "type": "module",
   "version": "3.0.0",
   "private": true,
-  "scripts": { 
-    "dev": "astro dev",
-    "start": "astro dev",
+  "scripts": {
+    "dev": "astro dev && npx tailwindcss -o dist/tailwind.css",
+    "start": "astro dev && npx tailwindcss -o dist/tailwind.css",
     "build": "astro build && npx tailwindcss -o dist/tailwind.css",
     "deploy": "npm run build && gh-pages -d dist",
     "preview": "astro preview",
@@ -16,7 +16,7 @@
     "@astrojs/mdx": "^2.0.3",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.1",
-    "@astrojs/tailwind": "^5.0.3",
+    "@astrojs/tailwind": "^5.1.5",
     "astro": "^4.16.18",
     "daisyui": "^4.4.10",
     "dayjs": "^1.11.9",

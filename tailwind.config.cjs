@@ -12,8 +12,9 @@ module.exports = {
 	  require("daisyui")
 	],
 	daisyui: {
-	  themes: ["light", "dark"], // ✅ Only include necessary themes (reduces CSS size)
-	  darkTheme: "dark", // ✅ Ensure dark mode works properly
-	  logs: false, // ✅ Hide DaisyUI build logs
-	}
+	  themes: true,
+	//   themes: ["light", "dark", "cupcake", "synthwave"], // Add or remove themes as needed
+	  darkTheme: "dark", 
+	  logs: false,
+	  }
   };

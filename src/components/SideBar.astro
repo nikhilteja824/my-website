@@ -9,19 +9,23 @@ const baseURL = import.meta.env.BASE_URL;
 <div class="drawer-side z-40">
   <label for="my-drawer" class="drawer-overlay"></label>
   <aside class="px-2 pt-2 h-auto min-h-full w-[19rem] bg-base-200 text-base-content flex flex-col">
-    <div class="w-fit mx-auto mt-5 mb-6 text-center">
+    <div class="flex flex-col items-center text-center w-full px-4">
       <a href="/">
-        <div class="avatar transition ease-in-out hover:scale-[102%] block m-auto">
+        <div class="avatar transition ease-in-out hover:scale-[102%] block">
           <div class="w-[8.5rem]">
-            <Image class="mask mask-circle" format="webp" width={300} height={300} src={`${baseURL}profile_cropped.png`}  alt="Profile image" />
+            <Image class="mask mask-circle" format="webp" width={300} height={300} src={`${baseURL}profile_cropped.png`} alt="Profile image" />
           </div>
         </div>
       </a>
-
+    
       <!-- Name -->
       <h2 class="mt-3 text-xl font-bold text-base-content">Nikhil Teja Malyala</h2>
+    
       <!-- Role -->
-      <p class="text-sm text-gray-500">Software Developer</p>
+      <p class="text-sm text-gray-500">
+        Software Engineer
+      </p>
+    
       <!-- Email -->
       <p class="text-sm text-gray-400 mt-1">
         <a href="mailto:nikhilteja85@gmail.com" class="hover:underline">nikhilteja85@gmail.com</a>

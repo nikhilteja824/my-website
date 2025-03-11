@@ -1,92 +1,99 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { skillCategories, skills } from "../lib/skills.ts";
+import { skillCategories, skillFilters, skills } from "../lib/skills.ts";
+
+let selectedFilter = "All"; // Default filter
+let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || "#2563eb"; // Vibrant Blue for 'All'
 ---
 
 <BaseLayout title="Skills" sideBarActiveItemID="skills">
-
-<!-- Centered Resume Title -->
   <div class="text-left">
     <h2 class="text-3xl font-bold mb-2">SKILLS</h2>
   </div>
 
-    <div class="mb-5 text-justify">
-      Here is an overview of my skills across different domains.    
-    </div>
+  <div class="mb-8 text-justify text-gray-700 text-lg">
+    Here is an overview of my skills across different domains.
+  </div>
 
-  <div class="flex flex-wrap justify-center gap-4 mb-6" id="skill-filters">
-    {skillCategories.map((category) => (
+  <!-- Filters -->
+  <div class="flex flex-wrap justify-center gap-4 mb-10" id="skill-filters">
+    {skillFilters.map((filter) => (
       <button
-        class="px-4 py-2 rounded-md text-sm font-medium border border-gray-400 text-gray-600"
-        data-category={category}
+        class="px-6 py-3 rounded-md text-base font-medium border border-gray-300 filter-btn transition-all duration-300 hover:shadow-lg hover:border-gray-500"
+        data-filter={filter.name}
+        data-color={filter.color}
       >
-        {category}
+        {filter.name}
       </button>
     ))}
   </div>
 
-  <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Skills Grid -->
+  <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
     {skills.map((skill) => (
-      <div class="bg-gray-100 p-4 rounded-lg shadow-md skill-item" data-category={skill.category}>
-        <div class="flex items-center gap-3">
-          <img src={`https://api.iconify.design/${skill.icon}.svg`} alt={skill.name} class="w-6 h-6" />
-          <h3 class="text-lg font-bold">{skill.name}</h3>
+      <div 
+        class="bg-white p-6 rounded-lg shadow-xl skill-item transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl"
+        data-category={skill.category} 
+        data-filters={skill.filters.join(" ")}
+      >
+        <div class="flex items-center gap-4">
+          <img src={`https://api.iconify.design/${skill.icon}.svg`} alt={skill.name} class="w-7 h-7" />
+          <h3 class="text-xl font-bold text-gray-900">{skill.name}</h3>
         </div>
-        <div class="relative w-full bg-gray-300 h-3 mt-2 rounded-full">
+        <div class="relative w-full bg-gray-200 h-5 mt-4 rounded-full overflow-hidden shadow-sm">
           <div
-            class="absolute top-0 left-0 h-full bg-blue-500 rounded-full"
-            style={`width: ${(skill.level / 5) * 100}%`}
+            class="absolute top-0 left-0 h-full rounded-full skill-bar transition-all duration-700 ease-in-out"
+            style={`width: ${(skill.level / 5) * 100}%; background: linear-gradient(to right, ${selectedColor}, #60a5fa);`}
           ></div>
         </div>
-        <p class="text-sm text-gray-600 mt-1">{skill.level} / 5</p>
+        <p class="text-md text-gray-600 mt-2 font-medium">{skill.level} / 5</p>
       </div>
     ))}
   </div>
-</div>
+</BaseLayout>
 
+<script>
+  function updateSkillBars(selectedColor) {
+    document.querySelectorAll(".skill-bar").forEach(bar => {
+      bar.style.background = `linear-gradient(to right, ${selectedColor}, #60a5fa)`;
+    });
+  }
 
-<script client:load>
   function setupSkillFilters() {
     const buttons = document.querySelectorAll("#skill-filters button");
     const skills = document.querySelectorAll(".skill-item");
 
-    // Restore last selected category from session storage (if exists)
-    let selectedCategory = sessionStorage.getItem("selectedSkillCategory") || "All";
-
-    function filterSkills(category) {
-      sessionStorage.setItem("selectedSkillCategory", category);
-
-      buttons.forEach((btn) => btn.classList.remove("border-blue-600", "text-blue-600"));
-      buttons.forEach((btn) => {
-        if (btn.getAttribute("data-category") === category) {
-          btn.classList.add("border-blue-600", "text-blue-600");
-        }
+    function highlightButton(button) {
+      buttons.forEach(btn => {
+        btn.classList.remove("border-blue-500", "text-blue-500", "font-semibold");
       });
-
-      skills.forEach((skill) => {
-        const skillElement = skill;
-        if (category === "All" || skill.getAttribute("data-category") === category) {
-          skillElement.style.display = "block";
-        } else {
-          skillElement.style.display = "none";
-        }
-      });
+      button.classList.add("border-blue-500", "text-blue-500", "font-semibold");
     }
 
-    // Apply filter on page load (preserve state)
-    filterSkills(selectedCategory);
-
-    // Add click event listeners to buttons
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        filterSkills(button.getAttribute("data-category"));
+        highlightButton(button);
+        const filter = button.getAttribute("data-filter");
+        const color = button.getAttribute("data-color") || "#2563eb";
+        
+        skills.forEach((skill) => {
+          if (filter === "All" || skill.getAttribute("data-filters").includes(filter)) {
+            skill.style.display = "block";
+          } else {
+            skill.style.display = "none";
+          }
+        });
+        
+        updateSkillBars(color);
       });
     });
+    const allButton = document.querySelector("#skill-filters button[data-filter='All']");
+    if (allButton) highlightButton(allButton);
   }
 
-  // Run filter setup on page load & after navigation
-  document.addEventListener("astro:after-swap", setupSkillFilters);
+  document.addEventListener("astro:after-swap", () => {
+    setupSkillFilters();
+  });
+
   setupSkillFilters();
 </script>
-
-</BaseLayout>

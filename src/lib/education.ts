@@ -1,10 +1,12 @@
 export const education = [
     {
       title: "Master's in Computer Science",
-      subtitle: "2024 - Present at Stony Brook University, NY, USA",
+      institution: { name: "Stony Brook University", link: "https://www.stonybrook.edu" },
+      duration: "2024 - Present",
     },
     {
       title: "Bachelor's in Electrical Engineering",
-      subtitle: "2018 - 2022 at IIT Roorkee, India",
+      institution: { name: "IIT Roorkee", link: "https://www.iitr.ac.in" },
+      duration: "2018 - 2022",
     },
   ];
