@@ -52,7 +52,7 @@ let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || 
   </div>
 </BaseLayout>
 
-<script>
+<script defer>
   function updateSkillBars(selectedColor) {
     document.querySelectorAll(".skill-bar").forEach(bar => {
       bar.style.background = `linear-gradient(to right, ${selectedColor}, #60a5fa)`;
@@ -65,9 +65,11 @@ let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || 
 
     function highlightButton(button) {
       buttons.forEach(btn => {
-        btn.classList.remove("border-blue-500", "text-blue-500", "font-semibold");
+        btn.classList.remove("text-blue-500", "border-blue-500", "font-semibold");
+        btn.classList.add("border-gray-300"); // Reset others to gray
       });
-      button.classList.add("border-blue-500", "text-blue-500", "font-semibold");
+      button.classList.remove("border-gray-300");
+      button.classList.add("text-blue-500", "border-blue-500", "font-semibold");
     }
 
     buttons.forEach((button) => {
@@ -75,7 +77,7 @@ let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || 
         highlightButton(button);
         const filter = button.getAttribute("data-filter");
         const color = button.getAttribute("data-color") || "#2563eb";
-        
+
         skills.forEach((skill) => {
           if (filter === "All" || skill.getAttribute("data-filters").includes(filter)) {
             skill.style.display = "block";
@@ -83,17 +85,16 @@ let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || 
             skill.style.display = "none";
           }
         });
-        
+
         updateSkillBars(color);
       });
     });
+
     const allButton = document.querySelector("#skill-filters button[data-filter='All']");
     if (allButton) highlightButton(allButton);
   }
 
-  document.addEventListener("astro:after-swap", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     setupSkillFilters();
   });
-
-  setupSkillFilters();
 </script>
