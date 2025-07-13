@@ -1,49 +1,149 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import TimeLineElement from "../components/cv/TimeLine.astro";
 import { experience } from "../lib/experience.ts";
 ---
 
 <BaseLayout title="Experience" sideBarActiveItemID="cv">
-
-  <!-- Page Title -->
-  <div class="text-left">
-    <h2 class="text-3xl font-bold mb-8">EXPERIENCE</h2>
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-3xl font-bold text-gray-900">EXPERIENCE</h2>
+    <div class="flex gap-2">
+      <button id="timelineToggle" class="px-3 py-1.5 rounded-full text-sm font-medium">🕘 Timeline View</button>
+      <button id="gridToggle" class="px-3 py-1.5 rounded-full text-sm font-medium">🗂️ Grid View</button>
+    </div>
   </div>
 
-  <!-- Experience Section -->
-  <div class="space-y-12">
-    {experience.map((exp) => (
-      <TimeLineElement title={exp.title}>
-        <div class="flex items-center gap-3 mb-2">
-          <img src={exp.logo} alt={exp.company.name} class="w-7 h-7 rounded-sm shadow-sm" />
-          <div class="text-gray-700 text-sm flex flex-wrap items-center gap-1">
-            <a href={exp.company.link} target="_blank" class="underline hover:no-underline font-medium">
-              {exp.company.name}
-            </a>
-            <span>|</span>
-            <span>{exp.duration}</span>
-          </div>
-        </div>
+  <!-- Timeline View -->
+  <div id="experience_timeline" class="relative border-l-2 border-gray-300 ml-6">
+    {experience.map((exp, index) => (
+      <div class="relative pl-10 pb-12">
+        <div class="absolute left-[-9px] top-6 w-4 h-4 rounded-full bg-indigo-500 border-2 border-white shadow"></div>
 
-        <!-- Experience Description Categories & Points -->
-        <div class="mt-3 space-y-4">
-          {exp.description.map((category) => (
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm">
-              <div class="text-sm font-semibold text-gray-800 mb-1 flex items-center gap-2">
-                <span class="inline-block w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
-                {category.category}
+        <div class="ml-4 bg-white border border-gray-300 rounded-xl p-6 shadow-md">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              {exp.logo && <img src={exp.logo} alt={exp.company.name} class="w-5 h-5" />}
+              <a href={exp.company.link} target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-gray-900 hover:underline">{exp.company.name}</a>
+            </div>
+            <span class="text-sm text-gray-600">{exp.duration}</span>
+          </div>
+          <h3 class="text-sm font-medium text-gray-700 mb-2">{exp.title}</h3>
+
+          {exp.description.map((section) => (
+            <div class="mt-4">
+              <div class="flex items-center gap-2 mb-1">
+                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                <strong class="text-gray-800 text-sm">{section.category}</strong>
               </div>
-              <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                {category.points.map((point) => (
+              <ul class="list-disc ml-6 text-sm text-gray-700 space-y-1">
+                {section.points.map((point) => (
                   <li>{point}</li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-      </TimeLineElement>
+      </div>
     ))}
   </div>
 
+  <!-- Grid View -->
+  <div id="experience_grid" class="hidden mb-10">
+    <div class="grid gap-8 md:grid-cols-2">
+      {experience.map((exp, idx) => (
+        <div class="bg-white border border-gray-300 rounded-lg p-6 shadow-md hover:shadow-lg transition flex flex-col justify-between max-h-[500px] relative">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                {exp.logo && <img src={exp.logo} alt={exp.company.name} class="w-5 h-5" />}
+                <a href={exp.company.link} target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-gray-900 hover:underline">{exp.company.name}</a>
+              </div>
+              <span class="text-sm text-gray-600">{exp.duration}</span>
+            </div>
+            <h3 class="text-sm font-medium text-gray-700 mb-2">{exp.title}</h3>
+
+            <div class="relative">
+              <!-- Scrollable content -->
+              <div class="scrollable-content overflow-y-auto pr-2 max-h-[260px]" onscroll="handleScroll(this)">
+                {exp.description.map((section) => (
+                  <div class="mt-4">
+                    <div class="flex items-center gap-2 mb-1">
+                      <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                      <strong class="text-gray-800 text-sm">{section.category}</strong>
+                    </div>
+                    <ul class="list-disc ml-6 text-sm text-gray-700 space-y-1">
+                      {section.points.map((point) => (
+                        <li>{point}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Shadow overlay (fixed) -->
+              <div
+                class="pointer-events-none absolute bottom-0 left-0 w-full h-6 bg-gradient-to-t from-white to-transparent fade-shadow transition-opacity duration-200"
+                style="opacity: 1;"
+              ></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 </BaseLayout>
+
+<script is:inline>
+  function initExperienceToggle() {
+    const grid = document.getElementById("experience_grid");
+    const timeline = document.getElementById("experience_timeline");
+    const gridBtn = document.getElementById("gridToggle");
+    const timelineBtn = document.getElementById("timelineToggle");
+
+    if (!grid || !timeline || !gridBtn || !timelineBtn) return;
+
+    const setActive = (btn, isActive) => {
+      btn.className = `px-3 py-1.5 rounded-full text-sm font-medium ${
+        isActive ? "bg-black text-white" : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+      }`;
+    };
+
+    const switchView = (view) => {
+      if (view === "grid") {
+        grid.classList.remove("hidden");
+        timeline.classList.add("hidden");
+        setActive(gridBtn, true);
+        setActive(timelineBtn, false);
+      } else {
+        timeline.classList.remove("hidden");
+        grid.classList.add("hidden");
+        setActive(gridBtn, false);
+        setActive(timelineBtn, true);
+      }
+
+      localStorage.setItem("viewMode", view);
+    };
+
+    const view = localStorage.getItem("viewMode");
+    const initialView = view === "grid" || view === "timeline" ? view : "timeline";
+    switchView(initialView);
+
+    gridBtn.addEventListener("click", () => switchView("grid"));
+    timelineBtn.addEventListener("click", () => switchView("timeline"));
+  }
+
+  function handleScroll(container) {
+    const fade = container.parentElement.querySelector(".fade-shadow");
+    if (!fade) return;
+    const atBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 1;
+    fade.style.opacity = atBottom ? "0" : "1";
+  }
+
+  // ✅ Run immediately (not on DOMContentLoaded) to support Astro SPA routing
+  initExperienceToggle();
+
+  // ✅ Run scroll shadows after mount
+  window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".scrollable-content").forEach((el) => handleScroll(el));
+  });
+</script>
+
