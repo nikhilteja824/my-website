@@ -1,50 +1,92 @@
+export const skillCategories = [
+  "Programming Languages",
+  "Backend Development",
+  "Frontend Frameworks",
+  "Cloud & Infrastructure",
+  "DevOps & Tooling",
+  "Databases & Storage",
+  "Data Streaming & Big Data",
+  "Security & Blockchain",
+  "CS Fundamentals",
+  "Computer Vision"
+];
+
 export const skillFilters = [
-    { name: "All", color: "#2563eb" },
-    { name: "Programming Languages", color: "#f59e0b" },
-    { name: "Backend Development", color: "#10b981" },
-    { name: "Frontend Development", color: "#cdf63b" },
-    { name: "Cloud Platforms", color: "#8b5cf6" },
-    { name: "DevOps & CI/CD", color: "#ef4444" },
-    { name: "Databases & Storage", color: "#f97316" },
-    { name: "Big Data & Messaging", color: "#a855f7" },
-    { name: "Blockchain & Security", color: "#eab308" },
-    { name: "Software Engineering", color: "#6b7280" }
-  ];
-  
-  export const skills = [
-    { name: "Java", icon: "logos:java", filters: ["Programming Languages", "Backend Development"], level: 4, color: "#f59e0b" },
-    { name: "C++", icon: "logos:c-plusplus", filters: ["Programming Languages"], level: 4, color: "#f59e0b" },
-    { name: "Python", icon: "logos:python", filters: ["Programming Languages", "Backend Development"], level: 4, color: "#f59e0b" },
-    { name: "JavaScript", icon: "logos:javascript", filters: ["Programming Languages", "Frontend Development"], level: 4, color: "#3b82f6" },
-    { name: "Solidity", icon: "logos:solidity", filters: ["Programming Languages", "Blockchain & Security"], level: 3, color: "#eab308" },
-    { name: "Spring Boot", icon: "logos:spring", filters: ["Backend Development"], level: 4, color: "#10b981" },
-    { name: "Ethereum", icon: "logos:ethereum", filters: ["Blockchain & Security"], level: 3, color: "#eab308" },   
-    { name: "Spring", icon: "logos:spring", filters: ["Backend Development"], level: 4, color: "#10b981" },
-    { name: "Hibernate", icon: "simple-icons:hibernate", filters: ["Backend Development"], level: 4, color: "#10b981" },
-    { name: "React", icon: "logos:react", filters: ["Frontend Development"], level: 4, color: "#3b82f6" },
-    { name: "Node.js", icon: "logos:nodejs", filters: ["Backend Development", "Frontend Development"], level: 4, color: "#3b82f6" },
-    { name: "HTML & CSS", icon: "logos:html-5", filters: ["Frontend Development"], level: 4, color: "#3b82f6" },
-    { name: "Docker", icon: "logos:docker", filters: ["DevOps & CI/CD"], level: 5, color: "#ef4444" },
-    { name: "Kubernetes", icon: "logos:kubernetes", filters: ["DevOps & CI/CD"], level: 4, color: "#ef4444" },
-    { name: "AWS", icon: "logos:aws", filters: ["Cloud Platforms"], level: 3, color: "#8b5cf6" },
-    { name: "Azure", icon: "logos:microsoft-azure", filters: ["Cloud Platforms"], level: 4, color: "#8b5cf6" },
-    { name: "MongoDB", icon: "logos:mongodb", filters: ["Databases & Storage", "Backend Development"], level: 4, color: "#f97316" },
-    { name: "MySQL", icon: "logos:mysql", filters: ["Databases & Storage"], level: 4, color: "#f97316" },
-    { name: "Apache Solr", icon: "simple-icons:apachesolr", filters: ["Databases & Storage"], level: 4, color: "#f97316" },
-    { name: "Redis", icon: "logos:redis", filters: ["Databases & Storage"], level: 4, color: "#f97316" },
-    { name: "Aerospike", icon: "simple-icons:aerospike", filters: ["Databases & Storage"], level: 3, color: "#f97316" },
-    { name: "Apache Storm", icon: "simple-icons:apache", filters: ["Big Data & Messaging"], level: 4, color: "#a855f7" },
-    { name: "Kafka", icon: "simple-icons:apachekafka", filters: ["Big Data & Messaging", "Backend Development"], level: 4, color: "#a855f7" },
-    { name: "Maven", icon: "simple-icons:apachemaven", filters: ["DevOps & CI/CD"], level: 4, color: "#ef4444" },
-    { name: "Apache Zookeeper", icon: "simple-icons:apache", filters: ["Big Data & Messaging", "Backend Development"], level: 4, color: "#a855f7" },
-    { name: "Gradle", icon: "simple-icons:gradle", filters: ["DevOps & CI/CD"], level: 4, color: "#ef4444" },
-    { name: "Prometheus", icon: "simple-icons:prometheus", filters: ["DevOps & CI/CD"], level: 4, color: "#ef4444" },
-    { name: "Shell Scripting", icon: "vscode-icons:file-type-shell", filters: ["Programming Languages", "DevOps & CI/CD"], level: 4, color: "#ef4444" },
-    { name: "Bash", icon: "logos:bash-icon", filters: ["Programming Languages", "DevOps & CI/CD"], level: 4, color: "#ef4444" },
-    { name: "Data Structures & Algorithms", icon: "mdi:chart-tree", filters: ["Software Engineering"], level: 5, color: "#6b7280" },
-    { name: "Operating Systems", icon: "mdi:linux", filters: ["Software Engineering"], level: 4, color: "#6b7280" },
-    { name: "Computer Architecture", icon: "mdi:cpu-64-bit", filters: ["Software Engineering"], level: 3, color: "#6b7280" },
-    { name: "Kibana", icon: "simple-icons:kibana", filters: ["DevOps & CI/CD", "Big Data & Messaging"], level: 4, color: "#a855f7" },
-    { name: "Distributed Systems", icon: "simple-icons:apache", filters: ["Software Engineering", "Big Data & Messaging"], level: 4, color: "#6b7280" },
-    { name: "System Design", icon: "mdi:application-brackets", filters: ["Software Engineering", "Backend Development"], level: 4, color: "#6b7280" },
-  ];
+  { name: "All", color: "#2563eb" },
+  { name: "Languages", color: "#f59e0b" },
+  { name: "Web Development", color: "#10b981" },
+  { name: "Cloud & DevOps", color: "#8b5cf6" },
+  { name: "Databases", color: "#f97316" },
+  { name: "Big Data", color: "#a855f7" },
+  // { name: "Blockchain", color: "#eab308" },
+  { name: "Fundamentals", color: "#6b7280" },
+  // { name: "Backend", color: "#ec4899" },
+  // { name: "Frontend", color: "#0ea5e9" },
+  { name: "Data Engineering", color: "#14b8a6" },
+  { name: "Security", color: "#ef4444" },
+  { name: "Computer Vision", color: "#7c3aed" }
+];
+
+export const skills = [
+  { name: "Java", icon: "logos:java", category: "Programming Languages", filters: ["Languages", "Web Development"], level: 4, color: "#f59e0b" },
+  { name: "C++", icon: "logos:c-plusplus", category: "Programming Languages", filters: ["Languages", "Fundamentals"], level: 4, color: "#f59e0b" },
+  { name: "C", icon: "logos:c", category: "Programming Languages", filters: ["Languages", "Fundamentals"], level: 4, color: "#f59e0b" },
+
+  { name: "Python", icon: "logos:python", category: "Programming Languages", filters: ["Languages", "Web Development", "Computer Vision", "Data Engineering"], level: 4, color: "#f59e0b" },  
+  { name: "JavaScript", icon: "logos:javascript", category: "Programming Languages", filters: ["Languages", "Web Development"], level: 4, color: "#f59e0b" },
+  { name: "TypeScript", icon: "logos:typescript-icon", category: "Programming Languages", filters: ["Languages", "Frontend"], level: 4, color: "#f59e0b" },
+  { name: "Solidity", icon: "logos:solidity", category: "Programming Languages", filters: ["Languages", "Blockchain"], level: 3, color: "#eab308" },
+
+  { name: "Spring Boot", icon: "logos:spring", category: "Backend Development", filters: ["Web Development", "Backend"], level: 4, color: "#10b981" },
+  { name: "Spring", icon: "logos:spring", category: "Backend Development", filters: ["Web Development", "Backend"], level: 4, color: "#10b981" },
+  { name: "Hibernate", icon: "simple-icons:hibernate", category: "Backend Development", filters: ["Web Development", "Backend"], level: 4, color: "#10b981" },
+  { name: "Node.js", icon: "logos:nodejs", category: "Backend Development", filters: ["Web Development", "Backend"], level: 4, color: "#10b981" },
+  { name: "Express", icon: "logos:express", category: "Backend Development", filters: ["Web Development", "Backend"], level: 4, color: "#10b981" },
+  { name: "gRPC", icon: "logos:grpc", category: "Backend Development", filters: ["Web Development", "Backend"], level: 3, color: "#10b981" },
+
+  { name: "React", icon: "logos:react", category: "Frontend Frameworks", filters: ["Web Development", "Frontend"], level: 4, color: "#10b981" },
+  { name: "HTML & CSS", icon: "logos:html-5", category: "Frontend Frameworks", filters: ["Web Development", "Frontend"], level: 4, color: "#10b981" },
+
+  { name: "AWS", icon: "logos:aws", category: "Cloud & Infrastructure", filters: ["Cloud & DevOps"], level: 3, color: "#8b5cf6" },
+  { name: "Azure", icon: "logos:microsoft-azure", category: "Cloud & Infrastructure", filters: ["Cloud & DevOps"], level: 4, color: "#8b5cf6" },
+  { name: "Google Cloud", icon: "logos:google-cloud", category: "Cloud & Infrastructure", filters: ["Cloud & DevOps"], level: 3, color: "#8b5cf6" },
+
+  { name: "Docker", icon: "logos:docker", category: "DevOps & Tooling", filters: ["Cloud & DevOps", "Data Engineering"], level: 5, color: "#8b5cf6" },
+  { name: "Kubernetes", icon: "logos:kubernetes", category: "DevOps & Tooling", filters: ["Cloud & DevOps", "Data Engineering"], level: 4, color: "#8b5cf6" },
+  { name: "Maven", icon: "simple-icons:apachemaven", category: "Backend Development", filters: ["Backend"], level: 4, color: "#ec4899" },
+  { name: "Gradle", icon: "simple-icons:gradle", category: "Backend Development", filters: ["Backend"], level: 4, color: "#ec4899" },
+  { name: "Prometheus", icon: "simple-icons:prometheus", category: "DevOps & Tooling", filters: ["Cloud & DevOps"], level: 4, color: "#8b5cf6" },
+  { name: "Jupyter", icon: "logos:jupyter", category: "DevOps & Tooling", filters: ["Data Engineering"], level: 4, color: "#14b8a6" },
+
+  { name: "MongoDB", icon: "logos:mongodb", category: "Databases & Storage", filters: ["Databases"], level: 4, color: "#f97316" },
+  { name: "MySQL", icon: "logos:mysql", category: "Databases & Storage", filters: ["Databases"], level: 4, color: "#f97316" },
+  { name: "PostgreSQL", icon: "logos:postgresql", category: "Databases & Storage", filters: ["Databases"], level: 3, color: "#f97316" },
+  { name: "Apache Solr", icon: "simple-icons:apachesolr", category: "Databases & Storage", filters: ["Databases"], level: 4, color: "#f97316" },
+  { name: "Redis", icon: "logos:redis", category: "Databases & Storage", filters: ["Databases"], level: 4, color: "#f97316" },
+  { name: "Aerospike", icon: "simple-icons:aerospike", category: "Databases & Storage", filters: ["Databases"], level: 3, color: "#f97316" },
+  { name: "Pandas", icon: "logos:pandas", category: "Databases & Storage", filters: ["Data Engineering"], level: 4, color: "#14b8a6" },
+  { name: "Numpy", icon: "logos:numpy", category: "Databases & Storage", filters: ["Data Engineering"], level: 4, color: "#14b8a6" },
+  { name: "GeoPandas", icon: "logos:geopandas", category: "Databases & Storage", filters: ["Data Engineering"], level: 3, color: "#14b8a6" },
+
+  { name: "Apache Storm", icon: "simple-icons:apache", category: "Data Streaming & Big Data", filters: ["Big Data"], level: 4, color: "#a855f7" },
+  { name: "Kafka", icon: "simple-icons:apachekafka", category: "Data Streaming & Big Data", filters: ["Big Data", "Web Development"], level: 4, color: "#a855f7" },
+  { name: "Zookeeper", icon: "simple-icons:apache", category: "Data Streaming & Big Data", filters: ["Big Data"], level: 4, color: "#a855f7" },
+  { name: "Kibana", icon: "simple-icons:kibana", category: "Data Streaming & Big Data", filters: ["Big Data", "Cloud & DevOps"], level: 4, color: "#a855f7" },
+
+  { name: "Ethereum", icon: "logos:ethereum", category: "Security & Blockchain", filters: ["Blockchain"], level: 3, color: "#eab308" },
+  { name: "OAuth", icon: "logos:oauth", category: "Security & Blockchain", filters: ["Security"], level: 4, color: "#ef4444" },
+  { name: "JWT", icon: "logos:jwt", category: "Security & Blockchain", filters: ["Security"], level: 4, color: "#ef4444" },
+
+  { name: "Shell Scripting", icon: "vscode-icons:file-type-shell", category: "DevOps & Tooling", filters: ["Languages", "Cloud & DevOps"], level: 4, color: "#ef4444" },
+  { name: "Bash", icon: "logos:bash-icon", category: "DevOps & Tooling", filters: ["Languages", "Cloud & DevOps"], level: 4, color: "#ef4444" },
+
+  { name: "DSA", icon: "mdi:chart-tree", category: "CS Fundamentals", filters: ["Fundamentals"], level: 5, color: "#6b7280" },
+  { name: "Operating Systems", icon: "mdi:linux", category: "CS Fundamentals", filters: ["Fundamentals"], level: 4, color: "#6b7280" },
+  { name: "Computer Architecture", icon: "mdi:cpu-64-bit", category: "CS Fundamentals", filters: ["Fundamentals"], level: 3, color: "#6b7280" },
+  { name: "Distributed Systems", icon: "simple-icons:apache", category: "CS Fundamentals", filters: ["Fundamentals", "Big Data"], level: 4, color: "#6b7280" },
+  { name: "System Design", icon: "mdi:application-brackets", category: "CS Fundamentals", filters: ["Fundamentals", "Web Development"], level: 4, color: "#6b7280" },
+
+  { name: "OpenCV", icon: "logos:opencv", category: "Computer Vision", filters: ["Computer Vision"], level: 4, color: "#7c3aed" },
+  { name: "TensorFlow", icon: "logos:tensorflow", category: "Computer Vision", filters: ["Computer Vision"], level: 4, color: "#7c3aed" },
+  { name: "PyTorch", icon: "logos:pytorch-icon", category: "Computer Vision", filters: ["Computer Vision"], level: 4, color: "#7c3aed" }
+];

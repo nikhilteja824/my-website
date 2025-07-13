@@ -2,24 +2,21 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { skillCategories, skillFilters, skills } from "../lib/skills.ts";
 
-let selectedFilter = "All"; // Default filter
-let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || "#2563eb"; // Vibrant Blue for 'All'
+let selectedFilter = "All";
+let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || "#2563eb";
 ---
 
 <BaseLayout title="Skills" sideBarActiveItemID="skills">
   <div class="text-left">
-    <h2 class="text-3xl font-bold mb-2">SKILLS</h2>
-  </div>
-
-  <div class="mb-8 text-justify text-gray-700 text-lg">
-    Here is an overview of my skills across different domains.
+    <h2 class="text-3xl font-bold mb-2 text-gray-800 tracking-tight">SKILLS</h2>
+    <p class="text-base text-gray-500 mb-10">A snapshot of my technical expertise across key domains.</p>
   </div>
 
   <!-- Filters -->
-  <div class="flex flex-wrap justify-center gap-4 mb-10" id="skill-filters">
+  <div class="flex flex-wrap justify-center gap-3 mb-12" id="skill-filters">
     {skillFilters.map((filter) => (
       <button
-        class="px-6 py-3 rounded-md text-base font-medium border border-gray-300 filter-btn transition-all duration-300 hover:shadow-lg hover:border-gray-500"
+        class="px-4 py-1.5 rounded-md text-sm font-medium border border-gray-300 filter-btn transition-all duration-300 hover:shadow-sm hover:border-gray-400"
         data-filter={filter.name}
         data-color={filter.color}
       >
@@ -28,31 +25,42 @@ let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || 
     ))}
   </div>
 
-  <!-- Skills Grid -->
-  <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    {skills.map((skill) => (
-      <div 
-        class="bg-white p-6 rounded-lg shadow-xl skill-item transition-all duration-500 hover:scale-[1.03] hover:shadow-2xl"
-        data-category={skill.category} 
-        data-filters={skill.filters.join(" ")}
-      >
-        <div class="flex items-center gap-4">
-          <img src={`https://api.iconify.design/${skill.icon}.svg`} alt={skill.name} class="w-7 h-7" />
-          <h3 class="text-xl font-bold text-gray-900">{skill.name}</h3>
+  <!-- Grouped Skills -->
+  <div id="skills-container" class="space-y-12">
+    {skillCategories.map((category) => (
+      <div class="group-skill-section">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+          <span class="text-lg">🔹</span> {category}
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {skills.filter(skill => skill.category === category).map((skill) => (
+            <div
+              class="bg-white px-4 py-3 rounded-lg border border-gray-200 skill-item transition-all duration-300 hover:shadow-md"
+              data-category={skill.category}
+              data-filters={skill.filters.join(" ")}
+            >
+              <div class="flex items-center gap-3 mb-1">
+                <img src={`https://api.iconify.design/${skill.icon}.svg`} alt={skill.name} class="w-5 h-5" />
+                <h4 class="text-sm font-medium text-gray-900">{skill.name}</h4>
+              </div>
+              <div class="relative w-full bg-gray-200 h-4 rounded-full overflow-hidden">
+                <div
+                  class="absolute top-0 left-0 h-full rounded-full skill-bar transition-all duration-700 ease-in-out"
+                  style={`width: ${(skill.level / 5) * 100}%; background: linear-gradient(to right, ${selectedColor}, #60a5fa);`}
+                ></div>
+                <span class="absolute right-2 top-0 h-full flex items-center text-xs font-semibold text-gray-700">
+                  {skill.level} / 5
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
-        <div class="relative w-full bg-gray-200 h-5 mt-4 rounded-full overflow-hidden shadow-sm">
-          <div
-            class="absolute top-0 left-0 h-full rounded-full skill-bar transition-all duration-700 ease-in-out"
-            style={`width: ${(skill.level / 5) * 100}%; background: linear-gradient(to right, ${selectedColor}, #60a5fa);`}
-          ></div>
-        </div>
-        <p class="text-md text-gray-600 mt-2 font-medium">{skill.level} / 5</p>
       </div>
     ))}
   </div>
 </BaseLayout>
 
-<script defer>
+<script is:inline>
   function updateSkillBars(selectedColor) {
     document.querySelectorAll(".skill-bar").forEach(bar => {
       bar.style.background = `linear-gradient(to right, ${selectedColor}, #60a5fa)`;
@@ -61,12 +69,12 @@ let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || 
 
   function setupSkillFilters() {
     const buttons = document.querySelectorAll("#skill-filters button");
-    const skills = document.querySelectorAll(".skill-item");
+    const skillSections = document.querySelectorAll(".group-skill-section");
 
     function highlightButton(button) {
       buttons.forEach(btn => {
         btn.classList.remove("text-blue-500", "border-blue-500", "font-semibold");
-        btn.classList.add("border-gray-300"); // Reset others to gray
+        btn.classList.add("border-gray-300");
       });
       button.classList.remove("border-gray-300");
       button.classList.add("text-blue-500", "border-blue-500", "font-semibold");
@@ -78,12 +86,18 @@ let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || 
         const filter = button.getAttribute("data-filter");
         const color = button.getAttribute("data-color") || "#2563eb";
 
-        skills.forEach((skill) => {
-          if (filter === "All" || skill.getAttribute("data-filters").includes(filter)) {
-            skill.style.display = "block";
-          } else {
-            skill.style.display = "none";
-          }
+        skillSections.forEach(section => {
+          const skillCards = section.querySelectorAll(".skill-item");
+          let hasVisible = false;
+          skillCards.forEach(card => {
+            if (filter === "All" || card.getAttribute("data-filters").includes(filter)) {
+              card.style.display = "block";
+              hasVisible = true;
+            } else {
+              card.style.display = "none";
+            }
+          });
+          section.style.display = hasVisible ? "block" : "none";
         });
 
         updateSkillBars(color);
@@ -94,7 +108,6 @@ let selectedColor = skillFilters.find(f => f.name === selectedFilter)?.color || 
     if (allButton) highlightButton(allButton);
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    setupSkillFilters();
-  });
+  // Ensure setup is re-run on every page render
+  setupSkillFilters();
 </script>

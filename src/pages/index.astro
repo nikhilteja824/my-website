@@ -4,57 +4,57 @@ import { testimonials } from "../lib/testimonials.ts";
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <!-- <div class="max-w-3xl mx-auto"> -->
-    <!-- Hero Section -->
-    <div class="pb-12 mt-5">
-      <div class="text-4xl font-semibold text-gray-700">👋 Hey there! Welcome</div>
+  <div class="mt-6 lg:max-w-[1200px] px-4 sm:px-8">
+    <!-- Page Title -->
+    <h1 class="text-4xl font-extrabold tracking-tight text-gray-800 mb-1 uppercase">About Me</h1>
+    <p class="text-sm text-gray-500 border-b pb-4 mb-6">— In About 786 Words —</p>
 
-      <div class="text-lg text-gray-700 mt-4">
-        I’m a Master’s student in Computer Science at 
-        <span class="font-semibold text-gray-900">Stony Brook University</span> and an alumnus of 
-        <span class="font-semibold text-gray-900">IIT Roorkee</span>. Passionate about 
-        <span class="font-semibold text-gray-900">backend development</span>, 
-        <span class="font-semibold text-gray-900">distributed systems</span>, and 
-        <span class="font-semibold text-gray-900">cloud infrastructure</span>.
-      </div>
-
-      <p class="text-lg text-gray-700 leading-relaxed mt-4">
-        With over <span class="font-semibold text-gray-900">two years of experience</span> as a 
-        <span class="font-semibold text-gray-900">Software Engineer at Myntra</span>, I’ve built 
-        scalable systems, optimized real-time operations, and tackled some seriously tricky engineering puzzles.
+    <!-- Hero/Intro Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-2">👋 <span class="align-middle">Hey there!</span></h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        I’m a Master’s student in Computer Science at <strong>Stony Brook University</strong>, and an alumnus of <strong>IIT Roorkee</strong>. Passionate about <strong>backend development</strong>, <strong>distributed systems</strong>, and <strong>cloud infrastructure</strong>.
       </p>
+    </section>
 
-      <p class="text-lg text-gray-700 leading-relaxed mt-4">
-        💡 I love <span class="font-semibold text-gray-900">designing robust architectures</span>, 
-        writing <span class="font-semibold text-gray-900">clean & efficient code</span>, and 
-        <span class="font-semibold text-gray-900">staying ahead of tech trends</span>. When I’m not deep in code, 
-        you’ll find me <span class="italic">overanalyzing my next meal choice</span>, getting lost in 
-        <span class="font-semibold text-gray-900">tech blogs</span>, or using 
-        <span class="font-semibold text-gray-900">ChatGPT to make surprisingly good shopping decisions</span> (yes, really!).
-      </p>
-
-      <!-- Call to Action Buttons -->
-      <div class="mt-6 flex gap-4">
-        <a class="px-5 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md text-lg transition font-semibold" 
-           href={`${import.meta.env.BASE_URL}contact/`}>
-          🤝 Let's Connect!
-        </a>
-        <a href={`${import.meta.env.BASE_URL}resume.pdf`}  download="Nikhil_Teja_Resume.pdf" 
-           class="px-5 py-3 text-white bg-gray-800 hover:bg-gray-900 rounded-lg shadow-md text-lg transition font-semibold flex items-center gap-2">
-          📄 Download Resume
-        </a>
+    <!-- Education Timeline -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold flex items-center gap-2 mb-6">📚 Education</h2>
+      <div class="relative ml-4 border-l-2 border-blue-400 pl-6 space-y-6">
+        <div>
+          <div class="text-blue-700 font-semibold">Stony Brook University</div>
+          <div class="text-gray-700">MS in Computer Science (2024 - Present)</div>
+        </div>
+        <div>
+          <div class="text-blue-700 font-semibold">IIT Roorkee</div>
+          <div class="text-gray-700">B.Tech in Electrical Engineering (2016 - 2020)</div>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Industry Experience -->
+    <section class="mb-16 border-t pt-10">
+      <h2 class="text-2xl font-semibold flex items-center gap-2 mb-4">💼 Industry Experience</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        I have over <strong>2 years</strong> of experience at <strong>Myntra</strong> as a Software Engineer, working on scalable systems and real-time backend operations.
+      </p>
+    </section>
+
+    <!-- Background Section -->
+    <section class="mb-16 border-t pt-10">
+      <h2 class="text-2xl font-semibold mb-4">🧩 My Background</h2>
+      <ul class="list-disc pl-6 text-lg text-gray-700 leading-relaxed space-y-2">
+        <li>Grew up in India, developing a deep interest in mathematics and engineering.</li>
+        <li>Completed undergraduate studies at IIT Roorkee in Electrical Engineering.</li>
+        <li>Developed hands-on software skills in distributed systems & backend development.</li>
+        <li>Worked at Myntra as a Software Development Engineer, leading impactful backend projects.</li>
+        <li>Currently pursuing a Master’s at Stony Brook University, specializing in cloud infrastructure.</li>
+      </ul>
+    </section>
 
     <!-- Testimonials Section -->
-    <div class="mt-14">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">
-        Perspectives on My Work & Impact
-      </h2>
-      <p class="text-lg text-gray-600 mb-6">
-        Some reflections from those I’ve worked with.
-      </p>
-
+    <section class="mb-16 border-t pt-10">
+      <h2 class="text-2xl font-semibold flex items-center gap-2 mb-6">💬 Perspectives on My Work</h2>
       <div class="grid md:grid-cols-2 gap-6">
         {testimonials.map((testimonial) => (
           <div class="p-6 border border-gray-200 rounded-xl shadow-sm bg-white">
@@ -65,50 +65,33 @@ import { testimonials } from "../lib/testimonials.ts";
           </div>
         ))}
       </div>
-
-      <div class="mt-6">
-        <a
-          href="https://www.linkedin.com/in/nikhiltejamalyala/details/recommendations/"
-          target="_blank"
-          class="text-blue-600 hover:text-blue-800 text-lg font-semibold"
-        >
-          View More on LinkedIn →
+      <div class="mt-4">
+        <a href="https://www.linkedin.com/in/nikhiltejamalyala/details/recommendations/" target="_blank" class="text-blue-600 hover:text-blue-800 text-lg font-semibold">
+          View more on LinkedIn →
         </a>
       </div>
-    </div>
-
-    <!-- Background Section -->
-    <div class="mt-20">
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">My Background</h2>
-      <ul class="list-disc pl-6 text-lg text-gray-700 leading-relaxed space-y-2">
-        <li>Grew up in India, developing a deep interest in mathematics and engineering.</li>
-        <li>Completed undergraduate studies at IIT Roorkee in Electrical Engineering.</li>
-        <li>Developed hands-on software skills in distributed systems & backend development.</li>
-        <li>Worked at Myntra as a Software Development Engineer, leading impactful backend projects.</li>
-        <li>Currently pursuing a Master’s at Stony Brook University, specializing in cloud infrastructure.</li>
-      </ul>
-    </div>
+    </section>
 
     <!-- Beyond the Code -->
-    <div class="mt-16">
-      <h2 class="text-2xl font-bold mb-4">Beyond the Code</h2>
-      <ul class="list-disc pl-5 text-lg text-gray-600">
-        <li>Fascinated by the intersection of software engineering and system scalability.</li>
-        <li>Love exploring architectural patterns, high-performance computing, and cloud-native development.</li>
-        <li>Always up for tech discussions—be it the latest backend trends or debating monoliths vs. microservices.</li>
-        <li>Enjoy reading research papers on distributed computing and large-scale system design.</li>
+    <section class="mb-16 border-t pt-10">
+      <h2 class="text-2xl font-semibold mb-4">🧠 Beyond the Code</h2>
+      <ul class="list-disc pl-6 text-lg text-gray-700 leading-relaxed space-y-2">
+        <li>Fascinated by system scalability and distributed architectures.</li>
+        <li>Enjoy deep tech reads and backend design discussions.</li>
+        <li>Love exploring cloud-native workflows and containerization.</li>
+        <li>Constantly learning, building, and refining my tools & setups.</li>
       </ul>
-    </div>
+    </section>
 
     <!-- Fun Facts -->
-    <div class="mt-16">
-      <h2 class="text-2xl font-bold mb-4">Fun Facts</h2>
-      <ul class="list-disc pl-5 text-lg text-gray-600">
-        <li>My refactoring habits sometimes annoy people, but hey, clean code is life.</li>
-        <li>I’ve probably spent more time customizing my terminal setup than actually using it.</li>
-        <li>Swapping out a single word in my resume can take me 30 minutes of contemplation.</li>
-        <li>Somehow, I always end up being the go-to tech support guy among my friends and family.</li>
+    <section class="mb-24 border-t pt-10">
+      <h2 class="text-2xl font-semibold mb-4">🎯 Fun Facts</h2>
+      <ul class="list-disc pl-6 text-lg text-gray-700 leading-relaxed space-y-2">
+        <li>I often refactor code just to sleep peacefully 😅</li>
+        <li>Spent more time customizing my terminal than using it</li>
+        <li>Resume word choice = 30 minutes of internal debate</li>
+        <li>Unofficial tech support guy for all friends & family</li>
       </ul>
-    </div>
-  <!-- </div> -->
+    </section>
+  </div>
 </BaseLayout>
