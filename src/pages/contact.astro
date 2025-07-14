@@ -6,67 +6,84 @@ const email = "nikhilteja85@gmail.com";
 ---
 
 <BaseLayout title="Contact" sideBarActiveItemID="contact">
-  <section class="text-left space-y-8">
-    <div>
-      <h2 class="text-3xl font-bold">CONTACT</h2>
-      <p class="text-gray-600 mt-2 max-w-xl">
-        Whether it's about software engineering, system design, projects or just saying hi — I'm always open to interesting conversations and opportunities.
-      </p>
-    </div>
+  <div class="space-y-12">
+    <header class="text-left">
+      <h1 class="text-3xl font-bold">CONTACT</h1>
+    </header>
 
-    <!-- Contact Details -->
-<div class="flex items-center gap-6 text-sm text-gray-700">
-  <div class="flex items-center gap-2">
-    <img src="https://api.iconify.design/mdi:email-outline.svg" alt="email" class="w-5 h-5" />
-    <a href={`mailto:${email}`} class="hover:underline">
-      <span class="select-all">{email}</span>
-    </a>
-  </div>
+    <div class="grid md:grid-cols-2 gap-x-16 gap-y-12 md:items-start">
+      <div class="space-y-10">
+        <p class="text-gray-600 max-w-lg">
+          Whether it's about software engineering, system design, projects or just saying hi — I'm always open to interesting conversations and opportunities.
+        </p>
 
-  <div class="flex items-center gap-2">
-    <img src="https://api.iconify.design/mdi:map-marker-outline.svg" alt="location" class="w-5 h-5" />
-    <span>New York, US</span>
-  </div>
-</div>
-
-
-    <!-- Social Icons -->
-    <div class="flex flex-wrap items-center gap-4">
-      {socials.map((social) => (
-        <a
-          href={social.link}
-          target="_blank"
-          aria-label={social.name}
-          class="hover:opacity-70 transition"
-        >
-          <img
-            src={`https://api.iconify.design/${social.icon}.svg`}
-            alt={social.name}
-            class="w-6 h-6"
-          />
-        </a>
-      ))}
-    </div>
-
-    <!-- Contact Form -->
-    <div class="bg-white border border-gray-200 shadow-sm rounded-xl px-6 py-8 max-w-xl">
-      <h3 class="text-2xl font-semibold mb-6 text-center">Get in Touch</h3>
-      <form class="space-y-4">
-        <input type="text" placeholder="Your Name" class="input input-bordered w-full" />
-        <input type="email" placeholder="Your Email" class="input input-bordered w-full" />
-        <textarea placeholder="Message" class="textarea textarea-bordered w-full h-28"></textarea>
-
-        <div class="flex justify-center">
-          <button type="submit"
-            class="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition inline-flex items-center gap-2">
-            Send Message
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L15 22l-4-9-9-4 20-7z" />
-        </svg>
-          </button>
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">I'm currently open to</h3>
+          <ul class="list-disc list-inside text-gray-700 space-y-2">
+            <li>Full-time Software Engineering roles</li>
+            <li>Collaborations on open-source projects</li>
+            <li>Freelance system design consultations</li>
+          </ul>
         </div>
-      </form>
+
+        <div class="flex flex-col gap-4 text-gray-700 pt-6 border-t border-gray-200">
+          <div class="flex items-center gap-3">
+            <img src="https://api.iconify.design/mdi:email-outline.svg?color=%234b5563" alt="email icon" class="w-6 h-6" />
+            <a href={`mailto:${email}`} class="hover:underline">
+              <span class="font-medium">{email}</span>
+            </a>
+          </div>
+          <div class="flex items-center gap-3">
+            <img src="https://api.iconify.design/mdi:map-marker-outline.svg?color=%234b5563" alt="location icon" class="w-6 h-6" />
+            <span class="font-medium">New York, US</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-2 pt-6 border-t border-gray-200">
+          {socials.map((social) => (
+            <a
+              href={social.link}
+              target="_blank"
+              aria-label={social.name}
+              class="p-2 rounded-full hover:bg-gray-100 transition-colors duration-300"
+            >
+              <img
+                src={`https://api.iconify.design/${social.icon}.svg`}
+                alt={social.name}
+                class="w-7 h-7"
+              />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="bg-white border border-gray-200 shadow-sm rounded-xl p-8">
+        <h2 class="text-2xl font-semibold mb-6 text-center">Get in Touch</h2>
+        <form class="space-y-5">
+          <div>
+            <label for="name" class="sr-only">Your Name</label>
+            <input id="name" type="text" placeholder="Your Name" class="input input-bordered w-full" />
+          </div>
+          <div>
+            <label for="email" class="sr-only">Your Email</label>
+            <input id="email" type="email" placeholder="Your Email" class="input input-bordered w-full" />
+          </div>
+          <div>
+            <label for="message" class="sr-only">Message</label>
+            <textarea id="message" placeholder="Message" class="textarea textarea-bordered w-full h-32"></textarea>
+          </div>
+          <div class="flex justify-center pt-2">
+            <button type="submit"
+              class="bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 inline-flex items-center gap-2">
+              Send Message
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L15 22l-4-9-9-4 20-7z" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </section>
+  </div>
 </BaseLayout>

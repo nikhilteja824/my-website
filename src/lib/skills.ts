@@ -66,7 +66,7 @@ export const skills = [
   { name: "Aerospike", icon: "simple-icons:aerospike", category: "Databases & Storage", filters: ["Databases"], level: 3, color: "#f97316" },
   { name: "Pandas", icon: "logos:pandas", category: "Databases & Storage", filters: ["Data Engineering"], level: 4, color: "#14b8a6" },
   { name: "Numpy", icon: "logos:numpy", category: "Databases & Storage", filters: ["Data Engineering"], level: 4, color: "#14b8a6" },
-  { name: "GeoPandas", icon: "logos:geopandas", category: "Databases & Storage", filters: ["Data Engineering"], level: 3, color: "#14b8a6" },
+  { name: "GeoPandas", icon: "simple-icons:geopandas", category: "Databases & Storage", filters: ["Data Engineering"], level: 3, color: "#14b8a6" },
 
   { name: "Apache Storm", icon: "simple-icons:apache", category: "Data Streaming & Big Data", filters: ["Big Data"], level: 4, color: "#a855f7" },
   { name: "Kafka", icon: "simple-icons:apachekafka", category: "Data Streaming & Big Data", filters: ["Big Data", "Web Development"], level: 4, color: "#a855f7" },

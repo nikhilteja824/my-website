@@ -19,14 +19,18 @@ import { experience } from "../lib/experience.ts";
         <div class="absolute left-[-9px] top-6 w-4 h-4 rounded-full bg-indigo-500 border-2 border-white shadow"></div>
 
         <div class="ml-4 bg-white border border-gray-300 rounded-xl p-6 shadow-md">
-          <div class="flex items-center justify-between mb-2">
+          
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-1 gap-1">
+          <div>
             <div class="flex items-center gap-2">
               {exp.logo && <img src={exp.logo} alt={exp.company.name} class="w-5 h-5" />}
               <a href={exp.company.link} target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-gray-900 hover:underline">{exp.company.name}</a>
             </div>
-            <span class="text-sm text-gray-600">{exp.duration}</span>
+            <h3 class="text-sm font-medium text-gray-700">{exp.title}</h3>
           </div>
-          <h3 class="text-sm font-medium text-gray-700 mb-2">{exp.title}</h3>
+          <span class="text-sm text-gray-600">{exp.duration}</span>
+        </div>
+
 
           {exp.description.map((section) => (
             <div class="mt-4">
@@ -52,14 +56,16 @@ import { experience } from "../lib/experience.ts";
       {experience.map((exp, idx) => (
         <div class="bg-white border border-gray-300 rounded-lg p-6 shadow-md hover:shadow-lg transition flex flex-col justify-between max-h-[500px] relative">
           <div>
-            <div class="flex items-center justify-between mb-2">
-              <div class="flex items-center gap-2">
-                {exp.logo && <img src={exp.logo} alt={exp.company.name} class="w-5 h-5" />}
-                <a href={exp.company.link} target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-gray-900 hover:underline">{exp.company.name}</a>
-              </div>
-              <span class="text-sm text-gray-600">{exp.duration}</span>
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-1 gap-1">
+          <div>
+            <div class="flex items-center gap-2">
+              {exp.logo && <img src={exp.logo} alt={exp.company.name} class="w-5 h-5" />}
+              <a href={exp.company.link} target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-gray-900 hover:underline">{exp.company.name}</a>
             </div>
-            <h3 class="text-sm font-medium text-gray-700 mb-2">{exp.title}</h3>
+            <h3 class="text-sm font-medium text-gray-700">{exp.title}</h3>
+          </div>
+          <span class="text-sm text-gray-600">{exp.duration}</span>
+        </div>
 
             <div class="relative">
               <!-- Scrollable content -->
