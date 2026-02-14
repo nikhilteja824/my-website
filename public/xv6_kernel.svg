@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f4f8"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="hwGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e53e3e"/>
+      <stop offset="100%" stop-color="#c53030"/>
+    </linearGradient>
+    <linearGradient id="drvGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ed8936"/>
+      <stop offset="100%" stop-color="#dd6b20"/>
+    </linearGradient>
+    <linearGradient id="kernGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4299e1"/>
+      <stop offset="100%" stop-color="#3182ce"/>
+    </linearGradient>
+    <linearGradient id="sysGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#667eea"/>
+      <stop offset="100%" stop-color="#5a67d8"/>
+    </linearGradient>
+    <linearGradient id="usrGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#48bb78"/>
+      <stop offset="100%" stop-color="#38a169"/>
+    </linearGradient>
+    <filter id="sh2" x="-3%" y="-5%" width="106%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg2)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-size="18" font-weight="700" fill="#2d3748">xv6 Extended Kernel Architecture</text>
+
+  <!-- Layer 5: Userspace (top) -->
+  <rect x="60" y="55" width="680" height="70" rx="10" fill="url(#usrGrad)" filter="url(#sh2)"/>
+  <text x="400" y="75" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">User Space</text>
+
+  <rect x="85" y="85" width="120" height="30" rx="5" fill="#276749"/>
+  <text x="145" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Shell (sh)</text>
+
+  <rect x="220" y="85" width="120" height="30" rx="5" fill="#276749"/>
+  <text x="280" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Telnet Shell</text>
+
+  <rect x="355" y="85" width="120" height="30" rx="5" fill="#276749"/>
+  <text x="415" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">User Programs</text>
+
+  <rect x="490" y="85" width="120" height="30" rx="5" fill="#276749"/>
+  <text x="550" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Multi-Terminal</text>
+
+  <rect x="625" y="85" width="100" height="30" rx="5" fill="#276749"/>
+  <text x="675" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">init / login</text>
+
+  <!-- Arrow down -->
+  <text x="400" y="142" text-anchor="middle" font-size="11" fill="#718096" font-weight="600">System Calls</text>
+
+  <!-- Layer 4: Syscall Interface -->
+  <rect x="60" y="150" width="680" height="40" rx="10" fill="url(#sysGrad)" filter="url(#sh2)"/>
+  <text x="400" y="175" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">System Call Interface — fork, exec, read, write, open, pipe, sbrk, mount</text>
+
+  <!-- Layer 3: Kernel Subsystems -->
+  <rect x="60" y="210" width="680" height="120" rx="10" fill="url(#kernGrad)" filter="url(#sh2)"/>
+  <text x="400" y="232" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Kernel Subsystems</text>
+
+  <!-- VM -->
+  <rect x="80" y="244" width="140" height="70" rx="6" fill="#2b6cb0"/>
+  <text x="150" y="264" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Virtual Memory</text>
+  <text x="150" y="280" text-anchor="middle" font-size="9" fill="#bee3f8">Demand Paging</text>
+  <text x="150" y="293" text-anchor="middle" font-size="9" fill="#bee3f8">COW Fork</text>
+  <text x="150" y="306" text-anchor="middle" font-size="9" fill="#bee3f8">4MB User Stack</text>
+
+  <!-- Scheduler -->
+  <rect x="235" y="244" width="140" height="70" rx="6" fill="#2b6cb0"/>
+  <text x="305" y="264" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">CPU Scheduler</text>
+  <text x="305" y="280" text-anchor="middle" font-size="9" fill="#bee3f8">Round Robin</text>
+  <text x="305" y="293" text-anchor="middle" font-size="9" fill="#bee3f8">Priority-Based</text>
+  <text x="305" y="306" text-anchor="middle" font-size="9" fill="#bee3f8">Pluggable Framework</text>
+
+  <!-- FS -->
+  <rect x="390" y="244" width="140" height="70" rx="6" fill="#2b6cb0"/>
+  <text x="460" y="264" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">File System</text>
+  <text x="460" y="280" text-anchor="middle" font-size="9" fill="#bee3f8">Multi-Disk Mount</text>
+  <text x="460" y="293" text-anchor="middle" font-size="9" fill="#bee3f8">Native Formatting</text>
+  <text x="460" y="306" text-anchor="middle" font-size="9" fill="#bee3f8">Path Resolution</text>
+
+  <!-- Traps & Locks -->
+  <rect x="545" y="244" width="180" height="70" rx="6" fill="#2b6cb0"/>
+  <text x="635" y="264" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Traps &amp; Concurrency</text>
+  <text x="635" y="280" text-anchor="middle" font-size="9" fill="#bee3f8">Interrupt Handling</text>
+  <text x="635" y="293" text-anchor="middle" font-size="9" fill="#bee3f8">Spinlocks / Sleeplocks</text>
+  <text x="635" y="306" text-anchor="middle" font-size="9" fill="#bee3f8">Ref-Counted Pages</text>
+
+  <!-- Layer 2: Device Drivers -->
+  <rect x="60" y="350" width="680" height="60" rx="10" fill="url(#drvGrad)" filter="url(#sh2)"/>
+  <text x="400" y="370" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Device Drivers</text>
+
+  <rect x="90" y="380" width="110" height="22" rx="4" fill="#c05621"/>
+  <text x="145" y="395" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">PS/2 Mouse</text>
+
+  <rect x="215" y="380" width="110" height="22" rx="4" fill="#c05621"/>
+  <text x="270" y="395" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">UART (Serial)</text>
+
+  <rect x="340" y="380" width="110" height="22" rx="4" fill="#c05621"/>
+  <text x="395" y="395" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">IDE (Disk)</text>
+
+  <rect x="465" y="380" width="110" height="22" rx="4" fill="#c05621"/>
+  <text x="520" y="395" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Keyboard</text>
+
+  <rect x="590" y="380" width="130" height="22" rx="4" fill="#c05621"/>
+  <text x="655" y="395" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Console / VGA</text>
+
+  <!-- Layer 1: Hardware -->
+  <rect x="60" y="430" width="680" height="50" rx="10" fill="url(#hwGrad)" filter="url(#sh2)"/>
+  <text x="400" y="452" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Hardware — x86 CPU, Memory (MMU/TLB), IDE Disk, UART, PS/2, VGA</text>
+  <text x="400" y="470" text-anchor="middle" font-size="10" fill="#fed7d7">Emulated via QEMU | Debugged with GDB</text>
+</svg>

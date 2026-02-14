@@ -2,18 +2,19 @@ const baseURL = import.meta.env.BASE_URL;
 
 export const experience = [
     {
-    title: "Software Engineer Intern",
+    title: "Software Engineering Intern",
     company: { name: "ReTax360", link: "https://retax360.com" },
     logo: `${baseURL}retax360.png`,
-    duration: "June 2025 - August 2025",
+    duration: "June 2025 - November 2025",
     description: [
       {
-        category: "Automated Systems",
+        category: "Platform & AI Engineering",
         points: [
-          "Engineered an LLM-driven document generation service within the ReTax360 platform, powering dynamic legal workflows via reusable prompt schemas, intelligent context resolution, and multi-format output generation; integrated smart email dispatch with GCS-backed attachments, automating 70% of clients’ manual drafting tasks.",
-          "Built a unified lead aggregation service to surface high-quality property tax business prospects from Apollo, Yelp APIs, and BBB via headless browser automation (Selenium + BeautifulSoup), delivering structured, deduplicated, and contact-enriched leads—enabling our sales team to replace manual research with a 10× faster, centralized discovery pipeline."
+          "Designed a scalable multi-tenant platform with logical data isolation and tenant-aware request handling, and redesigned the data processing pipeline to support client-specific schemas and high-volume concurrent ingestion.",
+          "Developed an AI agent to automate legal document drafting and review, leveraging LangChain to coordinate OpenAI and Claude LLM APIs, reducing manual effort by 70%.",
+          "Implemented a RAG layer for 100K+ document chunks using PostgreSQL/pgvector, reducing search latency to sub-200ms through HNSW indexing and metadata filtering.",
+          "Built scheduled enrichment workflows on GCP Cloud Scheduler to process 5K+ records weekly, using exponential backoff and idempotent retries to achieve 99% reliability in processing unstructured data."
         ]
-
       }
     ]
   },
