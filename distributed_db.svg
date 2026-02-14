@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f4f8"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="clientGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#667eea"/>
+      <stop offset="100%" stop-color="#5a67d8"/>
+    </linearGradient>
+    <linearGradient id="shardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#48bb78"/>
+      <stop offset="100%" stop-color="#38a169"/>
+    </linearGradient>
+    <linearGradient id="replicaGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4299e1"/>
+      <stop offset="100%" stop-color="#3182ce"/>
+    </linearGradient>
+    <linearGradient id="coordGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ed8936"/>
+      <stop offset="100%" stop-color="#dd6b20"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#bg)" rx="12"/>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-size="18" font-weight="700" fill="#2d3748">Distributed Transactional Database Architecture</text>
+
+  <!-- Client -->
+  <rect x="340" y="52" width="120" height="44" rx="8" fill="url(#clientGrad)" filter="url(#shadow)"/>
+  <text x="400" y="79" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">Client</text>
+
+  <!-- Arrows: Client → 2PC Coordinator -->
+  <line x1="400" y1="96" x2="400" y2="130" stroke="#718096" stroke-width="2" marker-end="url(#arrowHead)"/>
+
+  <!-- 2PC Coordinator -->
+  <rect x="290" y="130" width="220" height="44" rx="8" fill="url(#coordGrad)" filter="url(#shadow)"/>
+  <text x="400" y="150" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">2PC Coordinator</text>
+  <text x="400" y="166" text-anchor="middle" font-size="10" fill="#fffbe6">Cross-Shard ACID Transactions</text>
+
+  <!-- Arrows: Coordinator → Shards -->
+  <line x1="320" y1="174" x2="140" y2="210" stroke="#718096" stroke-width="2"/>
+  <line x1="400" y1="174" x2="400" y2="210" stroke="#718096" stroke-width="2"/>
+  <line x1="480" y1="174" x2="660" y2="210" stroke="#718096" stroke-width="2"/>
+
+  <!-- Shard 1 -->
+  <rect x="40" y="210" width="200" height="40" rx="8" fill="url(#shardGrad)" filter="url(#shadow)"/>
+  <text x="140" y="235" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Shard 1</text>
+
+  <!-- Shard 1 Replicas -->
+  <rect x="30" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="64" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 1</text>
+  <text x="64" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Leader</text>
+  <rect x="44" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="64" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <rect x="106" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="140" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 2</text>
+  <text x="140" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Follower</text>
+  <rect x="120" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="140" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <rect x="182" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="216" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 3</text>
+  <text x="216" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Follower</text>
+  <rect x="196" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="216" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <!-- Paxos label Shard 1 -->
+  <text x="140" y="358" text-anchor="middle" font-size="10" fill="#5a67d8" font-weight="600">Multi-Paxos Consensus</text>
+
+  <!-- Shard 2 -->
+  <rect x="300" y="210" width="200" height="40" rx="8" fill="url(#shardGrad)" filter="url(#shadow)"/>
+  <text x="400" y="235" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Shard 2</text>
+
+  <rect x="290" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="324" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 1</text>
+  <text x="324" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Leader</text>
+  <rect x="304" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="324" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <rect x="366" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="400" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 2</text>
+  <text x="400" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Follower</text>
+  <rect x="380" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="400" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <rect x="442" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="476" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 3</text>
+  <text x="476" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Follower</text>
+  <rect x="456" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="476" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <text x="400" y="358" text-anchor="middle" font-size="10" fill="#5a67d8" font-weight="600">Multi-Paxos Consensus</text>
+
+  <!-- Shard 3 -->
+  <rect x="560" y="210" width="200" height="40" rx="8" fill="url(#shardGrad)" filter="url(#shadow)"/>
+  <text x="660" y="235" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Shard 3</text>
+
+  <rect x="550" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="584" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 1</text>
+  <text x="584" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Leader</text>
+  <rect x="564" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="584" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <rect x="626" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="660" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 2</text>
+  <text x="660" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Follower</text>
+  <rect x="640" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="660" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <rect x="702" y="268" width="68" height="70" rx="6" fill="url(#replicaGrad)" filter="url(#shadow)"/>
+  <text x="736" y="288" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Replica 3</text>
+  <text x="736" y="302" text-anchor="middle" font-size="9" fill="#bee3f8">Follower</text>
+  <rect x="716" y="310" width="40" height="18" rx="3" fill="#2c5282"/>
+  <text x="736" y="323" text-anchor="middle" font-size="8" fill="#fff">LevelDB</text>
+
+  <text x="660" y="358" text-anchor="middle" font-size="10" fill="#5a67d8" font-weight="600">Multi-Paxos Consensus</text>
+
+  <!-- Bottom legend -->
+  <rect x="140" y="385" width="520" height="100" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+  <text x="400" y="408" text-anchor="middle" font-size="12" font-weight="700" fill="#2d3748">Key Features</text>
+
+  <rect x="170" y="420" width="10" height="10" rx="2" fill="#48bb78"/>
+  <text x="186" y="430" font-size="10" fill="#4a5568">3 Shards (horizontal partitioning)</text>
+
+  <rect x="170" y="440" width="10" height="10" rx="2" fill="#4299e1"/>
+  <text x="186" y="450" font-size="10" fill="#4a5568">3 Replicas per shard (Paxos consensus)</text>
+
+  <rect x="170" y="460" width="10" height="10" rx="2" fill="#ed8936"/>
+  <text x="186" y="470" font-size="10" fill="#4a5568">2PC for cross-shard transactions</text>
+
+  <rect x="440" y="420" width="10" height="10" rx="2" fill="#2c5282"/>
+  <text x="456" y="430" font-size="10" fill="#4a5568">LevelDB storage engine</text>
+
+  <rect x="440" y="440" width="10" height="10" rx="2" fill="#667eea"/>
+  <text x="456" y="450" font-size="10" fill="#4a5568">BFT with BLS threshold crypto</text>
+
+  <rect x="440" y="460" width="10" height="10" rx="2" fill="#718096"/>
+  <text x="456" y="470" font-size="10" fill="#4a5568">gRPC inter-node communication</text>
+</svg>
