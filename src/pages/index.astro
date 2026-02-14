@@ -2,6 +2,16 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { testimonials } from "../lib/testimonials.ts";
 import { education } from "../lib/education.ts";
+import { experience } from "../lib/experience.ts";
+
+const baseURL = import.meta.env.BASE_URL;
+
+const highlights = [
+  { metric: "1.5M+", label: "Requests/min", detail: "Scaled Myntra's discount service" },
+  { metric: "70%", label: "Manual Effort Saved", detail: "AI agent for legal doc automation" },
+  { metric: "58%", label: "Faster Startup", detail: "Spring Boot 3.1 + Java 17 migration" },
+  { metric: "25%", label: "Infra Cost Reduction", detail: "VM to Kubernetes migration" },
+];
 ---
 
 <style>
@@ -16,22 +26,53 @@ import { education } from "../lib/education.ts";
   <div class="mx-auto max-w-4xl px-4 sm:px-8 py-12">
     <section class="text-center mb-16">
       <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">
-        Hey, I'm <span class="gradient-text">Nikhil</span> 👋
+        Hey, I'm <span class="gradient-text">Nikhil</span>
       </h1>
       <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        I'm a passionate software engineer currently pursuing my Master's in Computer Science at <strong>Stony Brook University</strong>. With a foundation from <strong>IIT Roorkee</strong> and over <strong>2 years</strong> of hands-on experience at <strong>Myntra</strong>, I specialize in building scalable backend systems, distributed architectures, and cloud infrastructure.
+        I'm a software engineer pursuing my Master's in Computer Science at <strong>Stony Brook University</strong>, with a foundation from <strong>IIT Roorkee</strong>. I spent <strong>2+ years</strong> at <strong>Myntra</strong> building high-throughput backend systems handling millions of requests per minute. More recently at <strong>ReTax360</strong>, I built <strong>AI agents</strong> and <strong>RAG pipelines</strong> to automate document workflows using LLMs in production.
       </p>
+      <div class="mt-6 flex items-center justify-center gap-3">
+        <a
+          href={`${baseURL}contact/`}
+          class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+          Contact
+        </a>
+        <a
+          href="https://drive.google.com/file/d/1-YGXKOZbDtm-n0xh22uGOWDYMDjzs13u/view?usp=drive_link"
+          target="_blank"
+          class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold bg-white text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          Resume
+        </a>
+      </div>
     </section>
 
     <section class="grid md:grid-cols-2 gap-8 mb-20">
       <div class="bg-gray-50/70 p-8 rounded-2xl">
-        <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-3 mb-4">
+        <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-3 mb-6">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-          Industry Experience
+          Experience
         </h2>
-        <p class="text-gray-700 leading-relaxed">
-          I have over <strong>2 years</strong> of experience as a Software Engineer at <strong>Myntra</strong>, where I contributed to large-scale systems and real-time backend operations, leading several high-impact projects.
-        </p>
+        <div class="space-y-5">
+          {experience.map((exp) => (
+            <div class="flex items-start gap-3">
+              {exp.logo && <img src={exp.logo} alt={exp.company.name} class="w-5 h-5 mt-0.5 shrink-0" />}
+              <div>
+                <a href={exp.company.link} target="_blank" rel="noopener noreferrer" class="font-semibold text-gray-800 hover:underline text-sm">{exp.company.name}</a>
+                <p class="text-sm text-gray-600">{exp.title}</p>
+                <time class="text-xs text-gray-500">{exp.duration}</time>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div class="mt-6">
+          <a href={`${baseURL}cv/`} class="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">
+            View full experience &rarr;
+          </a>
+        </div>
       </div>
 
       <div class="bg-gray-50/70 p-8 rounded-2xl">
@@ -58,24 +99,16 @@ import { education } from "../lib/education.ts";
 
     <section class="mb-20">
       <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
-        My Growth as an Engineer
+        Impact at a Glance
       </h2>
-      <div class="relative border-l-2 border-gray-200">
-        <div class="mb-10 ml-8">
-          <span class="absolute flex items-center justify-center w-5 h-5 bg-gray-200 rounded-full -left-2.5 ring-4 ring-white">💡</span>
-          <h3 class="font-semibold text-lg text-gray-800">From First Principles</h3>
-          <p class="text-base text-gray-600">My path from Electrical Engineering to software was a discovery of passion. It taught me to break down complex problems to their core, a mindset I now apply to every line of code and system design.</p>
-        </div>
-        <div class="mb-10 ml-8">
-          <span class="absolute flex items-center justify-center w-5 h-5 bg-gray-200 rounded-full -left-2.5 ring-4 ring-white">⚙️</span>
-          <h3 class="font-semibold text-lg text-gray-800">Building for Resilience & Scale</h3>
-          <p class="text-base text-gray-600">Working on production systems at Myntra showed me that success isn't just about features, but about creating robust, scalable infrastructure that anticipates failure and handles growth gracefully.</p>
-        </div>
-        <div class="ml-8">
-          <span class="absolute flex items-center justify-center w-5 h-5 bg-gray-200 rounded-full -left-2.5 ring-4 ring-white">☁️</span>
-          <h3 class="font-semibold text-lg text-gray-800">Cloud-Native Focus</h3>
-          <p class="text-base text-gray-600">I believe the future of software is in the cloud. My current focus is on mastering containerization, orchestration, and cloud-native workflows to build the next generation of efficient and powerful applications.</p>
-        </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {highlights.map((item) => (
+          <div class="bg-gray-50/70 p-6 rounded-2xl text-center">
+            <div class="text-3xl font-extrabold text-blue-600 mb-1">{item.metric}</div>
+            <div class="text-sm font-semibold text-gray-800">{item.label}</div>
+            <div class="text-xs text-gray-500 mt-1">{item.detail}</div>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -107,10 +140,9 @@ import { education } from "../lib/education.ts";
         </div>
       </div>
     </section>
-
     <section class="grid md:grid-cols-2 gap-8 mb-16">
         <div class="bg-gray-50/70 p-8 rounded-2xl">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">🧠 Beyond the Code</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Beyond the Code</h2>
             <ul class="space-y-4 text-gray-700">
                 <li class="flex items-start gap-3">
                     <span class="text-blue-500 mt-1 font-bold">&rarr;</span>
@@ -127,11 +159,11 @@ import { education } from "../lib/education.ts";
             </ul>
         </div>
         <div class="bg-gray-50/70 p-8 rounded-2xl">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">🎯 Fun Facts</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Fun Facts</h2>
             <ul class="space-y-4 text-gray-700">
                 <li class="flex items-start gap-3">
                     <span class="text-purple-500 mt-1 font-bold">&#8226;</span>
-                    <span>I often refactor code just to sleep peacefully 😅</span>
+                    <span>I often refactor code just to sleep peacefully</span>
                 </li>
                 <li class="flex items-start gap-3">
                     <span class="text-purple-500 mt-1 font-bold">&#8226;</span>
